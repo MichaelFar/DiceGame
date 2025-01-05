@@ -1,0 +1,121 @@
+[gd_scene load_steps=12 format=3 uid="uid://yk72ewyxuvl7"]
+
+[ext_resource type="Material" path="res://textures/WoodFloorMaterial.tres" id="1_rjdib"]
+[ext_resource type="PackedScene" uid="uid://guhl72g77qn8" path="res://scenes/base_dice.tscn" id="2_1xuhm"]
+[ext_resource type="Script" path="res://scripts/dice_container.gd" id="2_g8y1b"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xqc0f"]
+sky_top_color = Color(0.621403, 0.270336, 0.708605, 1)
+sky_horizon_color = Color(0.705351, 0.609834, 0.710401, 1)
+ground_horizon_color = Color(0.705351, 0.609834, 0.710401, 1)
+
+[sub_resource type="Sky" id="Sky_gnkxe"]
+sky_material = SubResource("ProceduralSkyMaterial_xqc0f")
+
+[sub_resource type="Environment" id="Environment_xs4xw"]
+background_mode = 2
+sky = SubResource("Sky_gnkxe")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wujqk"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yjksn"]
+material = SubResource("StandardMaterial3D_wujqk")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gguhe"]
+size = Vector3(8.05511, 0.492676, 6.37341)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5svg5"]
+size = Vector3(1, 8.91614, 12.5461)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1u6i"]
+font_size = 64
+
+[node name="PlayArea" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xs4xw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(13.3383, 0, 0, 0, 1, 0, 0, 0, 14.669, 0, 0, 0)
+material_override = ExtResource("1_rjdib")
+mesh = SubResource("PlaneMesh_yjksn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+transform = Transform3D(0.245776, 0, 0, 0, 1, 0, 0, 0, 0.312209, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00942993, -0.253662, 0.0100708)
+shape = SubResource("BoxShape3D_gguhe")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999999, 0.00105756, 0.000879448, -0.00107453, 0.201535, 0.979481, 0.000858623, -0.979481, 0.201536, 0.228765, 4.7753, 1.7635)
+fov = 85.4
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 21.6221, 0.705426)
+light_energy = 2.903
+light_size = 0.539
+spot_range = 78.4701
+
+[node name="DiceContainer" type="Node3D" parent="." node_paths=PackedStringArray("scoreLabel")]
+script = ExtResource("2_g8y1b")
+scoreLabel = NodePath("../Panel/ScoreLabel")
+
+[node name="Dice" parent="DiceContainer" instance=ExtResource("2_1xuhm")]
+transform = Transform3D(1, 0, 0, 0, 0.764111, -0.645084, 0, 0.645084, 0.764111, 0.126644, 1.22875, 0.506966)
+
+[node name="Dice2" parent="DiceContainer" instance=ExtResource("2_1xuhm")]
+transform = Transform3D(1, 0, 0, 0, 0.764111, -0.645084, 0, 0.645084, 0.764111, -1.75061, 1.22875, 0.506966)
+
+[node name="Dice3" parent="DiceContainer" instance=ExtResource("2_1xuhm")]
+transform = Transform3D(1, 0, 0, 0, 0.764111, -0.645084, 0, 0.645084, 0.764111, 0.126644, 1.22875, -2.11914)
+
+[node name="Barrier" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85376, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95807, 1.71315)
+shape = SubResource("BoxShape3D_5svg5")
+
+[node name="Barrier2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04464, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95807, 1.71315)
+shape = SubResource("BoxShape3D_5svg5")
+
+[node name="Barrier3" type="StaticBody3D" parent="."]
+transform = Transform3D(0.0272064, 0, 0.99963, 0, 1, 0, -0.99963, 0, 0.0272064, -3.3743, 0, -4.34183)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95807, 1.71315)
+shape = SubResource("BoxShape3D_5svg5")
+
+[node name="Barrier4" type="StaticBody3D" parent="."]
+transform = Transform3D(0.0272064, 0, 0.99963, 0, 1, 0, -0.99963, 0, 0.0272064, -3.3743, 0, 2.47872)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95807, 1.71315)
+shape = SubResource("BoxShape3D_5svg5")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="Panel"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Winnings: 0"
+label_settings = SubResource("LabelSettings_s1u6i")
