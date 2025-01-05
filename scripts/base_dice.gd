@@ -8,6 +8,8 @@ var currentRollValue : int
 
 signal done_rolling
 
+var hasRolledOnce := false
+
 func printRollResult():
 	
 	print(getRollResult().text)
@@ -29,6 +31,8 @@ func getRollResult() -> Label3D:
 	return return_result
 
 func rollDice():
+	
+	hasRolledOnce = true
 	
 	currentRollValue = 0
 	
@@ -54,7 +58,10 @@ func _on_sleeping_state_changed() -> void:
 		
 		printRollResult()
 
+func scoreVisualEffect(score_label : Label3D):
+	pass
+
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if(!audioPlayer.get_playback_position() > 0):
+	if(!audioPlayer.get_playback_position() > 0 && hasRolledOnce):
 		audioPlayer.play()
