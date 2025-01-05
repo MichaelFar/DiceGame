@@ -75,6 +75,10 @@ func checkForDuplicateNumbersThenScore():
 			print("Adding " + str(number_occurrence * current_num) + " to score")
 			score += number_occurrence * current_num
 	
+	if(previous_number == 0 && score == 0):
+		
+		score += value_array.max()
+	
 	currentRollScore = score
 	var tween = get_tree().create_tween()
 	tween.tween_property(scoreLabel,"text", "Winnings: " + str(int(scoreLabel.text) + score), .7)
