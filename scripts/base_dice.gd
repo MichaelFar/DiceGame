@@ -58,9 +58,25 @@ func _on_sleeping_state_changed() -> void:
 		
 		printRollResult()
 
-func scoreVisualEffect(score_label : Label3D):
-	pass
-
+func scoreVisualEffect():
+	
+	var scored_label = getRollResult()
+	
+	var tween = get_tree().create_tween()
+	
+	var tween_back = func ():
+		var tween_2 = get_tree().create_tween()
+		tween_2.set_trans(Tween.TRANS_SPRING)
+		tween_2.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z, -PI/4), .3)
+	
+	tween.finished.connect(tween_back)
+	
+	tween.set_trans(Tween.TRANS_SPRING)
+	
+	tween.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z, PI/4), .3)
+	
+	
+	
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if(!audioPlayer.get_playback_position() > 0 && hasRolledOnce):
