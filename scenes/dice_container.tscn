@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctbowrlthk08g"]
+[gd_scene load_steps=4 format=3 uid="uid://ctbowrlthk08g"]
 
 [ext_resource type="Script" path="res://scripts/dice_container.gd" id="1_i35gd"]
 [ext_resource type="PackedScene" uid="uid://guhl72g77qn8" path="res://scenes/base_dice.tscn" id="2_taijp"]
+[ext_resource type="PackedScene" uid="uid://dc8v8drw6x0iq" path="res://scenes/dice_with_mult_test.tscn" id="3_gp704"]
 
 [node name="DiceContainer" type="Node3D" node_paths=PackedStringArray("diceResources", "diceParent", "spawnPoints")]
 script = ExtResource("1_i35gd")
@@ -10,7 +11,7 @@ diceParent = NodePath("DiceParent")
 spawnPoints = NodePath("SpawnPoints")
 
 [node name="DiceResources" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("base_dice", "base_dice 2", "base_dice 3"), [ExtResource("2_taijp"), ExtResource("2_taijp"), ExtResource("2_taijp")]]
+resources = [PackedStringArray("base_dice", "base_dice 2", "base_dice 3", "dice_with_mult_test"), [ExtResource("2_taijp"), ExtResource("2_taijp"), ExtResource("2_taijp"), ExtResource("3_gp704")]]
 
 [node name="DiceParent" type="Node3D" parent="."]
 

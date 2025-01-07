@@ -18,6 +18,8 @@ var currentRollScore := 0
 
 func _ready():
 	
+	GlobalController.scoreLabel = scoreLabel
+	
 	populateDice()
 
 func _physics_process(delta: float) -> void:
@@ -60,8 +62,6 @@ func checkForRolling():
 	
 	print("Can roll is true")
 	
-	canRoll = true
-	
 	if(hasRolledOnce):
 		
 		await get_tree().create_timer(.2).timeout
@@ -82,7 +82,7 @@ func checkForDuplicateNumbersThenScore():
 	
 	var score := 0
 	
-	var previous_number = 0
+	var previous_number_array = []
 	
 	for i in diceArray:
 	
@@ -95,19 +95,18 @@ func checkForDuplicateNumbersThenScore():
 		
 		var number_occurrence = value_array.count(current_num)
 		
-		if(number_occurrence > 1 && previous_number != current_num):
+		if(number_occurrence > 1 && current_num not in previous_number_array):
 			
 			scored_dice_array.append(i)
-			previous_number = current_num
+			previous_number_array.append(current_num)
 			print("Adding " + str(number_occurrence * current_num) + " to score")
-			
 			score += number_occurrence * current_num
 		
-		elif(previous_number == current_num):
+		elif(current_num in previous_number_array):
 			
 			scored_dice_array.append(i)
 	
-	if(previous_number == 0 && score == 0):
+	if(score == 0):
 		
 		scored_dice_array.append(diceArray[value_array.find(value_array.max())])
 		
@@ -116,11 +115,12 @@ func checkForDuplicateNumbersThenScore():
 	for i in scored_dice_array:
 		
 		i.scoreVisualEffect()
+		await i.done_scoring
+	
+	canRoll = true
 	
 	currentRollScore = score
 	
-	var tween = get_tree().create_tween()
+	GlobalController.preFinalScore = currentRollScore
 	
-	tween.tween_property(scoreLabel,"text", "Score: " + str(int(scoreLabel.text) + score), .7)
-
-	print("Round Score is " + str(score))
+	GlobalController.applyRoundEndScoreModifiers()
