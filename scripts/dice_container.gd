@@ -115,6 +115,7 @@ func checkForDuplicateNumbersThenScore():
 	for i in scored_dice_array:
 		
 		i.scoreVisualEffect()
+		
 		await i.done_scoring
 	
 	canRoll = true

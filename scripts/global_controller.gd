@@ -6,6 +6,7 @@ var preFinalScore : int
 signal finished_round_end
 
 var currentRollScore : int :
+	
 	set(value):
 		
 		currentRollScore = value

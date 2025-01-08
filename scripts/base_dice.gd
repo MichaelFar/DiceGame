@@ -63,7 +63,9 @@ func _on_sleeping_state_changed() -> void:
 			
 			if(getRollResult().get_script() != null):
 				#CHANGE THIS TO NOT BE BAD
-				GlobalController.callableArray.append(getRollResult().multScore)
+				for i in getRollResult().effectCallableArray:
+					
+					GlobalController.callableArray.append(i)
 			
 				await GlobalController.finished_round_end
 			
