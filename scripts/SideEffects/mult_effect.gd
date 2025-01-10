@@ -1,5 +1,6 @@
-extends "res://scripts/SideEffects/side_effect.gd"
+extends SideEffect
 
 func createSideEffect():
+	print("Created side effect")
 	
-	effectCallable = Callable(func():GlobalController.preFinalScore * multAmount)
+	effectCallable = Callable(func():return GlobalController.preFinalScore * multAmount)

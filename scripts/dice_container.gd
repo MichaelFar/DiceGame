@@ -103,7 +103,7 @@ func checkForDuplicateNumbersThenScore():
 			score += number_occurrence * current_num
 		
 		elif(current_num in previous_number_array):
-			
+			print("Scoring highest roll")
 			scored_dice_array.append(i)
 	
 	if(score == 0):

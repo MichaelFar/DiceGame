@@ -66,7 +66,7 @@ func _on_sleeping_state_changed() -> void:
 				for i in getRollResult().effectCallableArray:
 					
 					GlobalController.callableArray.append(i)
-			
+					
 				await GlobalController.finished_round_end
 			
 				scoreVisualEffect()

@@ -1,13 +1,12 @@
-extends Node2D
+extends Resource
 
 class_name SideEffect
 
-@export var multAmount : int
+var multAmount : int
 
 var effectCallable : Callable
 
-func _ready() -> void:
-	
+func _init() -> void:
 	createSideEffect()
 
 func createSideEffect():
