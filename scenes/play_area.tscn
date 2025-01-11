@@ -58,9 +58,12 @@ light_energy = 2.903
 light_size = 0.539
 spot_range = 78.4701
 
-[node name="DiceContainer" parent="." node_paths=PackedStringArray("scoreLabel") instance=ExtResource("2_j8wy6")]
+[node name="DiceContainer" parent="." node_paths=PackedStringArray("scoreLabel", "targetLabel", "cashLabel", "cashOutButton") instance=ExtResource("2_j8wy6")]
 transform = Transform3D(-4.37114e-08, 0, 1.2089, 0, 1, 0, -1, 0, -5.28428e-08, 0, 0, 0)
-scoreLabel = NodePath("../Panel/ScoreLabel")
+scoreLabel = NodePath("../Panel/HBoxContainer/ScoreLabel")
+targetLabel = NodePath("../Panel/HBoxContainer/TargetLabel")
+cashLabel = NodePath("../Panel/HBoxContainer/CashLabel")
+cashOutButton = NodePath("../Panel/HBoxContainer/Button")
 
 [node name="Barrier" type="StaticBody3D" parent="."]
 transform = Transform3D(0.979449, -0.201693, 0, 0.201693, 0.979449, 0, 0, 0, 1, 4.37161, 0, 0)
@@ -104,43 +107,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="ScoreLabel" type="Label" parent="Panel"]
-layout_direction = 1
+[node name="HBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScoreLabel" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_s1u6i")
+horizontal_alignment = 2
 
-[node name="TargetLabel" type="Label" parent="Panel"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -270.0
-offset_top = 97.0
-offset_right = 86.0
-offset_bottom = 185.0
-grow_horizontal = 0
+[node name="TargetLabel" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 text = "Target: 0"
 label_settings = SubResource("LabelSettings_s1u6i")
+horizontal_alignment = 2
 
-[node name="WinningsLabel" type="Label" parent="Panel"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -357.0
-offset_top = 198.0
-offset_right = -1.0
-offset_bottom = 286.0
-grow_horizontal = 0
-text = "Winnings: 0"
+[node name="CashLabel" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Cash: 0"
 label_settings = SubResource("LabelSettings_s1u6i")
+horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 32
+text = "Cash Out For:
+"
+alignment = 2

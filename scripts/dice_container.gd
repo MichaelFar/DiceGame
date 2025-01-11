@@ -2,6 +2,12 @@ extends Node3D
 
 @export var scoreLabel : Label
 
+@export var targetLabel : Label
+
+@export var cashLabel : Label
+
+@export var cashOutButton : Button
+
 @export var diceResources : ResourcePreloader
 
 @export var diceParent : Node3D
@@ -20,9 +26,25 @@ func _ready():
 	
 	GlobalController.scoreLabel = scoreLabel
 	
+	GlobalController.scoreLabel = scoreLabel
+	
+	GlobalController.cashLabel = cashLabel
+	
+	GlobalController.cashOutButton = cashOutButton
+	
+	GlobalController.diceContainer = self
+	
+	targetLabel.text ="Minimum Roll to Score: " + str(GlobalController.currentScoreTarget)
+	
+	cashLabel.text = "Cash: " + str(GlobalController.playerCash)
+	
 	populateDice()
 
 func _physics_process(delta: float) -> void:
+	
+	if(Input.is_action_just_released("debug")):
+		endRound()
+		
 	
 	if(Input.is_action_just_pressed("roll_dice") && canRoll):
 		
@@ -118,12 +140,16 @@ func checkForDuplicateNumbersThenScore():
 	
 	for i in scored_dice_array:
 		
+		var tween = get_tree().create_tween()
+		
+		tween.tween_property(scoreLabel,"text", "Score: " + str(int(scoreLabel.text) + i.rolledSide.sideValue), .4)
+		
 		i.scoreVisualEffect()
 		
-		scoreLabel.text = "Score: " + str(int(scoreLabel.text) + i.rolledSide.sideValue)
+		await tween.finished
 		
 		await i.done_scoring
-	
+		
 	canRoll = true
 	
 	currentRollScore = score
@@ -131,3 +157,13 @@ func checkForDuplicateNumbersThenScore():
 	GlobalController.preFinalScore = currentRollScore
 	
 	GlobalController.applyRoundEndScoreModifiers()
+
+func endRound():
+	
+	var tween = get_tree().create_tween()
+	
+	tween.tween_property(self, "scale", Vector3.ZERO, 1.0)
+	
+	await tween.finished
+	
+	queue_free()

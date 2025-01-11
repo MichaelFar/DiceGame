@@ -1,10 +1,24 @@
 extends Node
 
-var totalScore : int
+var totalScore : int :
+	set(value):
+		totalScore = value
+		scoreLabel.text = str("Score: " + str(totalScore))
+		print("Total amount scored this round " + str(value))
 
 var preFinalScore : int
 
+var playerCash : int :
+	set(value):
+		playerCash = value
+		cashLabel.text = "Cash: " + str(playerCash)
+
 var listOfCurrentRollValues := []
+
+var currentScoreTarget : int = 10:
+	set(value):
+		currentScoreTarget = value
+		targetLabel.text = "Minimum Roll to Score: " + str(currentScoreTarget)
 
 signal finished_round_end
 
@@ -15,14 +29,25 @@ var currentRollScore : int :
 		currentRollScore = value
 		await finished_round_end
 		totalScore += value
-		scoreLabel.text = str("Score: " + str(totalScore))
-		print("Total amount scored this round " + str(value))
+		
 
 var scoreLabel : Label
+
+var targetLabel : Label
+
+var cashLabel : Label
+
+var cashOutButton : Button
 
 var callableArray := []
 
 var callableArrayArgs := []
+
+var diceContainer : Node3D
+
+func _ready() -> void:
+	
+	pass
 
 func _process(delta: float) -> void:
 	
@@ -43,6 +68,11 @@ func applyRoundEndScoreModifiers():
 	if(callableArray.size() == 0):
 		
 		currentRollScore = preFinalScore
+	
+	if(currentRollScore < currentScoreTarget):
+		
+		currentRollScore = -totalScore
+		
 	
 	callableArray = []
 	listOfCurrentRollValues = []
