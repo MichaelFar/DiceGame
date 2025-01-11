@@ -11,7 +11,7 @@ diceParent = NodePath("DiceParent")
 spawnPoints = NodePath("SpawnPoints")
 
 [node name="DiceResources" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("base_dice", "base_dice 2", "base_dice 3", "dice_with_mult_test"), [ExtResource("2_taijp"), ExtResource("2_taijp"), ExtResource("2_taijp"), ExtResource("3_gp704")]]
+resources = [PackedStringArray("base_dice 3", "dice_with_mult_test", "dice_with_mult_test 2", "dice_with_mult_test 3"), [ExtResource("2_taijp"), ExtResource("3_gp704"), ExtResource("3_gp704"), ExtResource("3_gp704")]]
 
 [node name="DiceParent" type="Node3D" parent="."]
 

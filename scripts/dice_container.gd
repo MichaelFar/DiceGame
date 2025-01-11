@@ -14,6 +14,10 @@ extends Node3D
 
 @export var spawnPoints : Node3D
 
+@export var soundContainer : Node3D
+
+@export var currentRollLabel : Label
+
 var diceArray := []
 
 var canRoll = true
@@ -33,6 +37,8 @@ func _ready():
 	GlobalController.cashOutButton = cashOutButton
 	
 	GlobalController.diceContainer = self
+	
+	GlobalController.soundContainer = soundContainer
 	
 	targetLabel.text ="Minimum Roll to Score: " + str(GlobalController.currentScoreTarget)
 	
@@ -156,7 +162,15 @@ func checkForDuplicateNumbersThenScore():
 	
 	GlobalController.preFinalScore = currentRollScore
 	
+	if(currentRollScore < GlobalController.currentScoreTarget):
+		currentRollLabel.label_settings.font_color = Color.BROWN
+	else:
+		currentRollLabel.label_settings.font_color = Color.WHITE
+	currentRollLabel.text = "This Roll: " + str(currentRollScore) 
+	
 	GlobalController.applyRoundEndScoreModifiers()
+	await GlobalController.finished_round_end
+	currentRollLabel.text = "This Roll: " + str(GlobalController.currentRollScore)
 
 func endRound():
 	

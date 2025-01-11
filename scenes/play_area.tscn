@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://yk72ewyxuvl7"]
+[gd_scene load_steps=15 format=3 uid="uid://yk72ewyxuvl7"]
 
 [ext_resource type="Material" path="res://textures/WoodFloorMaterial.tres" id="1_rjdib"]
 [ext_resource type="PackedScene" uid="uid://ctbowrlthk08g" path="res://scenes/dice_container.tscn" id="2_j8wy6"]
+[ext_resource type="AudioStream" uid="uid://c1bpup00og1rg" path="res://sounds/zapsplat_multimedia_game_sound_8_bit_blip_subtle_error_incorrect_112049.mp3" id="3_m1sdc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xqc0f"]
 sky_top_color = Color(0.621403, 0.270336, 0.708605, 1)
@@ -28,7 +29,20 @@ size = Vector3(13.1743, 0.492676, 10.3111)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5svg5"]
 size = Vector3(1, 8.91614, 12.5461)
 
+[sub_resource type="LabelSettings" id="LabelSettings_2memi"]
+resource_local_to_scene = true
+font_size = 128
+
 [sub_resource type="LabelSettings" id="LabelSettings_s1u6i"]
+resource_local_to_scene = true
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_jnvmo"]
+resource_local_to_scene = true
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_eae40"]
+resource_local_to_scene = true
 font_size = 64
 
 [node name="PlayArea" type="Node3D"]
@@ -58,12 +72,14 @@ light_energy = 2.903
 light_size = 0.539
 spot_range = 78.4701
 
-[node name="DiceContainer" parent="." node_paths=PackedStringArray("scoreLabel", "targetLabel", "cashLabel", "cashOutButton") instance=ExtResource("2_j8wy6")]
+[node name="DiceContainer" parent="." node_paths=PackedStringArray("scoreLabel", "targetLabel", "cashLabel", "cashOutButton", "soundContainer", "currentRollLabel") instance=ExtResource("2_j8wy6")]
 transform = Transform3D(-4.37114e-08, 0, 1.2089, 0, 1, 0, -1, 0, -5.28428e-08, 0, 0, 0)
 scoreLabel = NodePath("../Panel/HBoxContainer/ScoreLabel")
 targetLabel = NodePath("../Panel/HBoxContainer/TargetLabel")
 cashLabel = NodePath("../Panel/HBoxContainer/CashLabel")
 cashOutButton = NodePath("../Panel/HBoxContainer/Button")
+soundContainer = NodePath("../SoundContainer")
+currentRollLabel = NodePath("../Panel/HBoxContainer/CurrentScoreLabel")
 
 [node name="Barrier" type="StaticBody3D" parent="."]
 transform = Transform3D(0.979449, -0.201693, 0, 0.201693, 0.979449, 0, 0, 0, 1, 4.37161, 0, 0)
@@ -122,21 +138,27 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 0
 text = "Score: 0"
+label_settings = SubResource("LabelSettings_2memi")
+horizontal_alignment = 1
+
+[node name="CurrentScoreLabel" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+text = "This Roll: "
 label_settings = SubResource("LabelSettings_s1u6i")
-horizontal_alignment = 2
+horizontal_alignment = 1
 
 [node name="TargetLabel" type="Label" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Target: 0"
-label_settings = SubResource("LabelSettings_s1u6i")
+label_settings = SubResource("LabelSettings_jnvmo")
 horizontal_alignment = 2
 
 [node name="CashLabel" type="Label" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Cash: 0"
-label_settings = SubResource("LabelSettings_s1u6i")
+label_settings = SubResource("LabelSettings_eae40")
 horizontal_alignment = 2
 
 [node name="Button" type="Button" parent="Panel/HBoxContainer"]
@@ -146,3 +168,8 @@ theme_override_font_sizes/font_size = 32
 text = "Cash Out For:
 "
 alignment = 2
+
+[node name="SoundContainer" type="Node3D" parent="."]
+
+[node name="ZapsplatMultimediaGameSound8BitBlipSubtleErrorIncorrect112049" type="AudioStreamPlayer" parent="SoundContainer"]
+stream = ExtResource("3_m1sdc")

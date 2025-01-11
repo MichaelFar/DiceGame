@@ -15,7 +15,7 @@ var playerCash : int :
 
 var listOfCurrentRollValues := []
 
-var currentScoreTarget : int = 10:
+var currentScoreTarget : int = 6:
 	set(value):
 		currentScoreTarget = value
 		targetLabel.text = "Minimum Roll to Score: " + str(currentScoreTarget)
@@ -28,7 +28,11 @@ var currentRollScore : int :
 		
 		currentRollScore = value
 		await finished_round_end
-		totalScore += value
+		if(value >= currentScoreTarget):
+			totalScore += value
+		else:
+			soundContainer.get_children()[0].play()
+			totalScore = 0
 		
 
 var scoreLabel : Label
@@ -38,6 +42,8 @@ var targetLabel : Label
 var cashLabel : Label
 
 var cashOutButton : Button
+
+var soundContainer : Node3D
 
 var callableArray := []
 
@@ -61,18 +67,24 @@ func multiplyScore(amountToMult : int):
 
 func applyRoundEndScoreModifiers():
 	
+	var temp_score = 0
+	
 	for i in callableArray:
 		
-		currentRollScore = i.call()
+		temp_score += i.call()
+		
+	if(temp_score > 0):
+			
+		currentRollScore = temp_score
 	
 	if(callableArray.size() == 0):
 		
 		currentRollScore = preFinalScore
 	
-	if(currentRollScore < currentScoreTarget):
-		
-		currentRollScore = -totalScore
-		
+	#if(currentRollScore < currentScoreTarget):
+		#
+		#currentRollScore = -totalScore
+	
 	
 	callableArray = []
 	listOfCurrentRollValues = []

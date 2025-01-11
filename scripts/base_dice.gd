@@ -6,6 +6,8 @@ extends RigidBody3D
 
 @export var scoreSoundContainer : Node3D
 
+@export var preScoreSoundContainer : Node3D
+
 var currentRollValue : int
 
 signal done_rolling
@@ -76,6 +78,8 @@ func scoreVisualEffect():
 	
 	var tween = get_tree().create_tween()
 	
+	
+	
 	var tween_back = func():
 		
 		var tween_2 = get_tree().create_tween()
@@ -103,7 +107,7 @@ func scoreVisualEffect():
 	tween.finished.connect(tween_reverse)
 	
 	tween.set_trans(Tween.TRANS_SPRING)
-	
+	playRandomPreScoreSound()
 	tween.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z, PI/4), .2)
 	
 func playRandomScoreSound():
@@ -113,6 +117,14 @@ func playRandomScoreSound():
 	var rand_index = rand_obj.randi_range(0, scoreSoundContainer.get_children().size() - 1)
 	
 	scoreSoundContainer.get_children()[rand_index].play()
+	
+func playRandomPreScoreSound():
+	
+	var rand_obj = RandomNumberGenerator.new()
+	
+	var rand_index = rand_obj.randi_range(0, preScoreSoundContainer.get_children().size() - 1)
+	
+	preScoreSoundContainer.get_children()[rand_index].play()
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	
