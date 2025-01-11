@@ -2,7 +2,7 @@ extends Resource
 
 class_name SideEffect
 
-var multAmount : int
+var diceParent : RigidBody3D
 
 var effectCallable : Callable
 

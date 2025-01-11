@@ -35,16 +35,20 @@ func _physics_process(delta: float) -> void:
 		rollAllDice()
 
 func populateDice():
-		
+	
+	var spawn_points_children = spawnPoints.get_children()
+	
 	for i in diceResources.get_resource_list():
 		
-		var dice_instance = diceResources.get_resource(i)
-		
-		dice_instance = dice_instance.instantiate()
-		
-		diceParent.add_child(dice_instance)
-		
-		dice_instance.global_position = spawnPoints.get_children()[diceResources.get_resource_list().find(i)].global_position
+		if(spawn_points_children.size() >= diceResources.get_resource_list().size()):
+			
+			var dice_instance = diceResources.get_resource(i)
+			
+			dice_instance = dice_instance.instantiate()
+			
+			diceParent.add_child(dice_instance)
+			
+			dice_instance.global_position = spawn_points_children[diceResources.get_resource_list().find(i)].global_position
 	
 	for i in diceParent.get_children():
 		
@@ -95,14 +99,14 @@ func checkForDuplicateNumbersThenScore():
 		
 		var number_occurrence = value_array.count(current_num)
 		
-		if(number_occurrence > 1 && current_num not in previous_number_array):
+		if(number_occurrence > 1 && current_num not in previous_number_array && current_num > 0):
 			
 			scored_dice_array.append(i)
 			previous_number_array.append(current_num)
 			print("Adding " + str(number_occurrence * current_num) + " to score")
 			score += number_occurrence * current_num
 		
-		elif(current_num in previous_number_array):
+		elif(current_num in previous_number_array && current_num > 0):
 			print("Scoring highest roll")
 			scored_dice_array.append(i)
 	
@@ -115,6 +119,8 @@ func checkForDuplicateNumbersThenScore():
 	for i in scored_dice_array:
 		
 		i.scoreVisualEffect()
+		
+		scoreLabel.text = "Score: " + str(int(scoreLabel.text) + i.rolledSide.sideValue)
 		
 		await i.done_scoring
 	

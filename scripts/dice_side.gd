@@ -2,14 +2,29 @@ extends Label3D
 
 @export var effectResources : ResourcePreloader
 
-var effectCallableArray := []
+@export var sideValue  : int :
+	
+	set(value):
+		
+		sideValue = value
+		
+		if(value > 0):
+		
+			text = str(value)
 
-var multAmount : int = 2
+var diceParent : RigidBody3D
+
+var effectCallableArray := []
 
 func _ready() -> void:
 	
-	instantiateEffectCallables()
+	diceParent = owner
 	
+	instantiateEffectCallables()
+
+func setLabelText():
+	pass
+
 func instantiateEffectCallables():
 	
 	for i in effectResources.get_resource_list():
@@ -20,6 +35,6 @@ func instantiateEffectCallables():
 		
 		effect_instance = effect_instance.new()
 		
-		effect_instance.multAmount = multAmount
+		effect_instance.diceParent = diceParent
 		
 		effectCallableArray.append(effect_instance.effectCallable)

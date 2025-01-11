@@ -1,7 +1,10 @@
 extends Node
 
 var totalScore : int
+
 var preFinalScore : int
+
+var listOfCurrentRollValues := []
 
 signal finished_round_end
 
@@ -42,4 +45,5 @@ func applyRoundEndScoreModifiers():
 		currentRollScore = preFinalScore
 	
 	callableArray = []
+	listOfCurrentRollValues = []
 	finished_round_end.emit()

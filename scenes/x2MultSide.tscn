@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://biah4qa8t24yh"]
 
-[ext_resource type="Script" path="res://scripts/dice_side.gd" id="1_6rujv"]
-[ext_resource type="Script" path="res://scripts/SideEffects/mult_effect.gd" id="2_de1vm"]
+[ext_resource type="Script" path="res://scripts/dice_side.gd" id="1_lvi5s"]
+[ext_resource type="Script" path="res://scripts/SideEffects/mult_effect.gd" id="2_jbt40"]
 
 [node name="mult2Side" type="Label3D" node_paths=PackedStringArray("effectResources")]
 transform = Transform3D(-4, 0, 0, 0, 4.1, 0, 0, 0, 1, -0.0127761, -0.00392258, -0.503062)
 texture_filter = 0
 text = "x2"
-script = ExtResource("1_6rujv")
+script = ExtResource("1_lvi5s")
 effectResources = NodePath("EffectResources")
 
 [node name="EffectResources" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("mult_effect"), [ExtResource("2_de1vm")]]
+resources = [PackedStringArray("mult_effect"), [ExtResource("2_jbt40")]]

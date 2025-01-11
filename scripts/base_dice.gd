@@ -14,6 +14,8 @@ signal done_scoring
 
 var hasRolledOnce := false
 
+var rolledSide : Label3D
+
 func printRollResult():
 	
 	print(getRollResult().text)
@@ -44,8 +46,7 @@ func rollDice():
 	
 	var rand_range = rand_obj.randf_range(-1,1)
 	
-	apply_impulse(Vector3.UP * 10,Vector3(0.5 * rand_range,0.5 * rand_range,0))
-
+	apply_impulse(Vector3.UP * 10,Vector3(0.5 * rand_range,0.5 * rand_range,0.5 * rand_range))
 
 func _on_sleeping_state_changed() -> void:
 	
@@ -53,23 +54,19 @@ func _on_sleeping_state_changed() -> void:
 		
 		done_rolling.emit()
 		
-		if(getRollResult().text.is_valid_float()):
+		rolledSide = getRollResult()
+		
+		currentRollValue = rolledSide.sideValue # -1 is the placeholder for "no value"
 			
-			currentRollValue = int(getRollResult().text)
+		if(rolledSide.get_script() != null):
 			
-		else:
 			
-			currentRollValue = 0
 			
-			if(getRollResult().get_script() != null):
-				#CHANGE THIS TO NOT BE BAD
-				for i in getRollResult().effectCallableArray:
-					
-					GlobalController.callableArray.append(i)
-					
-				await GlobalController.finished_round_end
-			
-				scoreVisualEffect()
+			for i in rolledSide.effectCallableArray:
+				
+				GlobalController.callableArray.append(i)
+				
+			await GlobalController.finished_round_end
 		
 		printRollResult()
 

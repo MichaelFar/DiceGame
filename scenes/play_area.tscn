@@ -63,28 +63,35 @@ transform = Transform3D(-4.37114e-08, 0, 1.2089, 0, 1, 0, -1, 0, -5.28428e-08, 0
 scoreLabel = NodePath("../Panel/ScoreLabel")
 
 [node name="Barrier" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.37161, 0, 0)
+transform = Transform3D(0.979449, -0.201693, 0, 0.201693, 0.979449, 0, 0, 0, 1, 4.37161, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95807, 1.71315)
 shape = SubResource("BoxShape3D_5svg5")
 
 [node name="Barrier2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.91205, 0, 0)
+transform = Transform3D(0.98258, 0.185838, 0, -0.185838, 0.98258, 0, 0, 0, 1, -4.91205, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95807, 1.71315)
 shape = SubResource("BoxShape3D_5svg5")
 
 [node name="Barrier3" type="StaticBody3D" parent="."]
-transform = Transform3D(0.0272064, 0, 0.99963, 0, 1, 0, -0.99963, 0, 0.0272064, -3.3743, 0, -4.34183)
+transform = Transform3D(0.0272064, 0, 0.99963, 0.168823, 0.985636, -0.00459475, -0.985271, 0.168885, 0.0268156, -3.3743, 0, -4.34183)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95807, 1.71315)
 shape = SubResource("BoxShape3D_5svg5")
 
+[node name="Barrier5" type="StaticBody3D" parent="."]
+transform = Transform3D(0.0272064, -1.444e-10, 0.99963, 0.998911, -0.0379169, -0.0271868, 0.0379029, 0.999281, -0.00103158, -3.4938, 7.46468, -1.82858)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95807, 1.71315)
+shape = SubResource("BoxShape3D_5svg5")
+
 [node name="Barrier4" type="StaticBody3D" parent="."]
-transform = Transform3D(0.0272064, 0, 0.99963, 0, 1, 0, -0.99963, 0, 0.0272064, -3.3743, 0, 4.55227)
+transform = Transform3D(0.0272064, 0, 0.99963, -0.22196, 0.975037, 0.00604096, -0.974676, -0.222042, 0.0265273, -3.3743, 0, 4.55227)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Barrier4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95807, 1.71315)
