@@ -1,8 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://yk72ewyxuvl7"]
+[gd_scene load_steps=25 format=3 uid="uid://yk72ewyxuvl7"]
 
 [ext_resource type="Material" path="res://textures/WoodFloorMaterial.tres" id="1_rjdib"]
 [ext_resource type="PackedScene" uid="uid://ctbowrlthk08g" path="res://scenes/dice_container.tscn" id="2_j8wy6"]
+[ext_resource type="FontFile" uid="uid://dmut0mdgvpa88" path="res://fonts/SquareKids-LZ5y.ttf" id="3_drp4b"]
 [ext_resource type="AudioStream" uid="uid://c1bpup00og1rg" path="res://sounds/zapsplat_multimedia_game_sound_8_bit_blip_subtle_error_incorrect_112049.mp3" id="3_m1sdc"]
+[ext_resource type="FontFile" uid="uid://ddu25cxo1m5w8" path="res://fonts/BukhariScript-lemD.ttf" id="4_430w1"]
+[ext_resource type="AudioStream" uid="uid://dbgpn2tjc8mdi" path="res://sounds/zapsplat_leisure_poker_chips_scrape_slide_from_table_into_hand_21314.mp3" id="4_aetrx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xqc0f"]
 sky_top_color = Color(0.621403, 0.270336, 0.708605, 1)
@@ -31,19 +34,146 @@ size = Vector3(1, 8.91614, 12.5461)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2memi"]
 resource_local_to_scene = true
-font_size = 128
+font = ExtResource("3_drp4b")
+font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_s1u6i"]
 resource_local_to_scene = true
-font_size = 64
+font = ExtResource("3_drp4b")
+font_size = 36
 
 [sub_resource type="LabelSettings" id="LabelSettings_jnvmo"]
 resource_local_to_scene = true
-font_size = 64
+font = ExtResource("3_drp4b")
+font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_eae40"]
 resource_local_to_scene = true
-font_size = 64
+font = ExtResource("3_drp4b")
+font_size = 48
+
+[sub_resource type="FontFile" id="FontFile_ar1yh"]
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/36/0/ascent = 0.0
+cache/0/36/0/descent = 0.0
+cache/0/36/0/underline_position = 0.0
+cache/0/36/0/underline_thickness = 0.0
+cache/0/36/0/scale = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amb1l"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3j8w"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8yxa"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4kqj4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3scfo"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_04gu5"]
+default_font_size = 64
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 36
+Button/fonts/font = SubResource("FontFile_ar1yh")
+Button/styles/disabled = SubResource("StyleBoxFlat_amb1l")
+Button/styles/focus = SubResource("StyleBoxFlat_g3j8w")
+Button/styles/hover = SubResource("StyleBoxFlat_q8yxa")
+Button/styles/normal = SubResource("StyleBoxFlat_4kqj4")
+Button/styles/pressed = SubResource("StyleBoxFlat_3scfo")
 
 [node name="PlayArea" type="Node3D"]
 
@@ -75,9 +205,9 @@ spot_range = 78.4701
 [node name="DiceContainer" parent="." node_paths=PackedStringArray("scoreLabel", "targetLabel", "cashLabel", "cashOutButton", "soundContainer", "currentRollLabel") instance=ExtResource("2_j8wy6")]
 transform = Transform3D(-4.37114e-08, 0, 1.2089, 0, 1, 0, -1, 0, -5.28428e-08, 0, 0, 0)
 scoreLabel = NodePath("../Panel/HBoxContainer/ScoreLabel")
-targetLabel = NodePath("../Panel/HBoxContainer/TargetLabel")
-cashLabel = NodePath("../Panel/HBoxContainer/CashLabel")
-cashOutButton = NodePath("../Panel/HBoxContainer/Button")
+targetLabel = NodePath("../Panel/HBoxContainer/HBoxContainer2/TargetLabel")
+cashLabel = NodePath("../Panel/HBoxContainer/HBoxContainer2/CashLabel")
+cashOutButton = NodePath("../Panel/HBoxContainer/HBoxContainer2/Button")
 soundContainer = NodePath("../SoundContainer")
 currentRollLabel = NodePath("../Panel/HBoxContainer/CurrentScoreLabel")
 
@@ -118,11 +248,14 @@ shape = SubResource("BoxShape3D_5svg5")
 
 [node name="Panel" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -1152.0
+offset_top = 28.0
+offset_right = -6.0
+offset_bottom = 648.0
+grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -147,29 +280,45 @@ text = "This Roll: "
 label_settings = SubResource("LabelSettings_s1u6i")
 horizontal_alignment = 1
 
-[node name="TargetLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="HBoxContainer2" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="TargetLabel" type="Label" parent="Panel/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Target: 0"
 label_settings = SubResource("LabelSettings_jnvmo")
 horizontal_alignment = 2
 
-[node name="CashLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="CashLabel" type="Label" parent="Panel/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Cash: 0"
 label_settings = SubResource("LabelSettings_eae40")
 horizontal_alignment = 2
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer"]
+[node name="Button" type="Button" parent="Panel/HBoxContainer/HBoxContainer2"]
+self_modulate = Color(1, 0.658824, 0, 1)
 layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 32
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = SubResource("Theme_04gu5")
+theme_override_fonts/font = ExtResource("4_430w1")
 text = "Cash Out For:
+0
 "
-alignment = 2
 
 [node name="SoundContainer" type="Node3D" parent="."]
 
 [node name="ZapsplatMultimediaGameSound8BitBlipSubtleErrorIncorrect112049" type="AudioStreamPlayer" parent="SoundContainer"]
 stream = ExtResource("3_m1sdc")
+volume_db = -4.919
+
+[node name="ZapsplatLeisurePokerChipsScrapeSlideFromTableIntoHand21314" type="AudioStreamPlayer" parent="SoundContainer"]
+stream = ExtResource("4_aetrx")
+
+[connection signal="button_down" from="Panel/HBoxContainer/HBoxContainer2/Button" to="DiceContainer" method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Panel/HBoxContainer/HBoxContainer2/Button" to="DiceContainer" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/HBoxContainer/HBoxContainer2/Button" to="DiceContainer" method="_on_button_mouse_exited"]

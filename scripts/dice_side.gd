@@ -38,3 +38,16 @@ func instantiateEffectCallables():
 		effect_instance.diceParent = diceParent
 		
 		effectCallableArray.append(effect_instance.effectCallable)
+
+func upgradeSide():
+	
+	var isNormalSide := true
+	
+	for i in effectCallableArray:
+		
+		isNormalSide = false
+		i.upgrade()
+		
+	if(isNormalSide):
+		
+		sideValue += 1

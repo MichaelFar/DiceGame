@@ -60,7 +60,7 @@ text = "2"
 sideValue = 2
 
 [node name="DiceSide5" parent="SideContainer" instance=ExtResource("3_1sinn")]
-transform = Transform3D(-3.99999, 0.00413942, -0.00135544, 0.00403248, 4.1, 0.00111541, 0.0054262, 0.00456764, -0.999998, 0, 0, -0.51)
+transform = Transform3D(-4, 0, -8.74227e-08, 0, 4.1, 0, 3.49691e-07, 0, -1, 0, 0, -0.51)
 text = "5"
 sideValue = 5
 

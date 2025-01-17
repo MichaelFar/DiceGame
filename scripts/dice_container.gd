@@ -18,17 +18,19 @@ extends Node3D
 
 @export var currentRollLabel : Label
 
+@export var cashoutSound : AudioStreamPlayer3D
+
 var diceArray := []
 
 var canRoll = true
 
 var hasRolledOnce = false
 
+var isRolling := false
+
 var currentRollScore := 0
 
 func _ready():
-	
-	GlobalController.scoreLabel = scoreLabel
 	
 	GlobalController.scoreLabel = scoreLabel
 	
@@ -40,7 +42,11 @@ func _ready():
 	
 	GlobalController.soundContainer = soundContainer
 	
-	targetLabel.text ="Minimum Roll to Score: " + str(GlobalController.currentScoreTarget)
+	GlobalController.currentRollLabel = currentRollLabel
+	
+	GlobalController.targetLabel = targetLabel
+	
+	GlobalController.currentScoreTarget = 6
 	
 	cashLabel.text = "Cash: " + str(GlobalController.playerCash)
 	
@@ -49,9 +55,9 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	
 	if(Input.is_action_just_released("debug")):
+		
 		endRound()
 		
-	
 	if(Input.is_action_just_pressed("roll_dice") && canRoll):
 		
 		print("Rolling dice")
@@ -102,6 +108,8 @@ func checkForRolling():
 		
 func rollAllDice():
 	
+	isRolling = true
+	
 	for i in diceArray:
 		
 		i.rollDice()
@@ -115,6 +123,8 @@ func checkForDuplicateNumbersThenScore():
 	var score := 0
 	
 	var previous_number_array = []
+	
+	GlobalController.isScoring = true
 	
 	for i in diceArray:
 	
@@ -135,9 +145,10 @@ func checkForDuplicateNumbersThenScore():
 			score += number_occurrence * current_num
 		
 		elif(current_num in previous_number_array && current_num > 0):
+			
 			print("Scoring highest roll")
 			scored_dice_array.append(i)
-	
+	#If no duplicates are found, score the highest number
 	if(score == 0):
 		
 		scored_dice_array.append(diceArray[value_array.find(value_array.max())])
@@ -162,10 +173,8 @@ func checkForDuplicateNumbersThenScore():
 	
 	GlobalController.preFinalScore = currentRollScore
 	
-	if(currentRollScore < GlobalController.currentScoreTarget):
-		currentRollLabel.label_settings.font_color = Color.BROWN
-	else:
-		currentRollLabel.label_settings.font_color = Color.WHITE
+	
+	
 	currentRollLabel.text = "This Roll: " + str(currentRollScore) 
 	
 	GlobalController.applyRoundEndScoreModifiers()
@@ -176,8 +185,34 @@ func endRound():
 	
 	var tween = get_tree().create_tween()
 	
-	tween.tween_property(self, "scale", Vector3.ZERO, 1.0)
+	tween.tween_property(diceParent, "scale", Vector3.ZERO, 1.0)
 	
 	await tween.finished
 	
-	queue_free()
+	for i in diceParent.get_children():
+		i.queue_free()
+
+func _on_button_mouse_entered() -> void:
+
+	canRoll = false
+
+func _on_button_mouse_exited() -> void:
+
+	if(!GlobalController.isScoring && !isRolling):
+		
+		canRoll = true
+	
+
+func _on_button_button_down() -> void:
+	
+	if(!GlobalController.isScoring):
+		
+		GlobalController.playerCash += GlobalController.totalScore / 5
+		
+		GlobalController.totalScore = 0
+		
+		cashoutSound.play()
+		
+		cashOutButton.text = "Click to Cash Out For: \n" + str(0)
+	
+	#endRound()

@@ -1,10 +1,16 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://wk4g34h771tp"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://wk4g34h771tp"]
+
+[sub_resource type="AudioEffectNotchFilter" id="AudioEffectNotchFilter_bbkxe"]
+resource_name = "NotchFilter"
 
 [sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_286pe"]
 resource_name = "PitchShift"
 pitch_scale = 0.01
 
 [resource]
+bus/0/volume_db = -0.725993
+bus/0/effect/0/effect = SubResource("AudioEffectNotchFilter_bbkxe")
+bus/0/effect/0/enabled = true
 bus/1/name = &"LowToneImpact"
 bus/1/solo = false
 bus/1/mute = false

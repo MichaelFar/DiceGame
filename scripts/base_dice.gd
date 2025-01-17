@@ -62,8 +62,6 @@ func _on_sleeping_state_changed() -> void:
 			
 		if(rolledSide.get_script() != null):
 			
-			
-			
 			for i in rolledSide.effectCallableArray:
 				
 				GlobalController.callableArray.append(i)
@@ -78,15 +76,13 @@ func scoreVisualEffect():
 	
 	var tween = get_tree().create_tween()
 	
-	
-	
 	var tween_back = func():
 		
 		var tween_2 = get_tree().create_tween()
 		
 		tween_2.set_trans(Tween.TRANS_SPRING)
 		
-		tween_2.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z, PI/4), .2)
+		tween_2.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z.normalized(), PI/4), .2)
 		
 		await tween_2.finished
 		
@@ -102,13 +98,17 @@ func scoreVisualEffect():
 		
 		tween_2.set_trans(Tween.TRANS_SPRING)
 		
-		tween_2.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z, -2 * PI/4), .2)
+		tween_2.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z.normalized(), -2 * PI/4), .2)
+		
 	
 	tween.finished.connect(tween_reverse)
 	
 	tween.set_trans(Tween.TRANS_SPRING)
+	
 	playRandomPreScoreSound()
-	tween.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z, PI/4), .2)
+	
+	tween.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z.normalized(), PI/4), .2)
+	
 	
 func playRandomScoreSound():
 	
@@ -131,3 +131,9 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	if(!audioPlayer.get_playback_position() > 0 && hasRolledOnce):
 	
 		audioPlayer.play()
+
+func upgradeRandomSide():
+	
+	rollDice()
+	await done_rolling
+	getRollResult().upgradeSide()
