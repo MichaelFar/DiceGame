@@ -1,11 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://yk72ewyxuvl7"]
+[gd_scene load_steps=32 format=3 uid="uid://yk72ewyxuvl7"]
 
 [ext_resource type="Material" path="res://textures/WoodFloorMaterial.tres" id="1_rjdib"]
 [ext_resource type="PackedScene" uid="uid://ctbowrlthk08g" path="res://scenes/dice_container.tscn" id="2_j8wy6"]
-[ext_resource type="FontFile" uid="uid://dmut0mdgvpa88" path="res://fonts/SquareKids-LZ5y.ttf" id="3_drp4b"]
 [ext_resource type="AudioStream" uid="uid://c1bpup00og1rg" path="res://sounds/zapsplat_multimedia_game_sound_8_bit_blip_subtle_error_incorrect_112049.mp3" id="3_m1sdc"]
 [ext_resource type="FontFile" uid="uid://ddu25cxo1m5w8" path="res://fonts/BukhariScript-lemD.ttf" id="4_430w1"]
 [ext_resource type="AudioStream" uid="uid://dbgpn2tjc8mdi" path="res://sounds/zapsplat_leisure_poker_chips_scrape_slide_from_table_into_hand_21314.mp3" id="4_aetrx"]
+[ext_resource type="Script" path="res://addons/richtext2/text_effects/effects/rte_heart.gd" id="5_ooum8"]
+[ext_resource type="Script" path="res://addons/richtext2/text_effects/effects/rte_sway.gd" id="6_b6dfl"]
+[ext_resource type="Script" path="res://addons/richtext2/richer_text_label.gd" id="7_4g5d0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xqc0f"]
 sky_top_color = Color(0.621403, 0.270336, 0.708605, 1)
@@ -32,25 +34,50 @@ size = Vector3(13.1743, 0.492676, 10.3111)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5svg5"]
 size = Vector3(1, 8.91614, 12.5461)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2memi"]
-resource_local_to_scene = true
-font = ExtResource("3_drp4b")
-font_size = 64
+[sub_resource type="RichTextEffect" id="RichTextEffect_uns42"]
+resource_name = "heart"
+script = ExtResource("5_ooum8")
+metadata/rt = 64261854423560
 
-[sub_resource type="LabelSettings" id="LabelSettings_s1u6i"]
-resource_local_to_scene = true
-font = ExtResource("3_drp4b")
-font_size = 36
+[sub_resource type="RichTextEffect" id="RichTextEffect_080wm"]
+resource_name = "sway"
+script = ExtResource("6_b6dfl")
+metadata/rt = 64261854423560
 
-[sub_resource type="LabelSettings" id="LabelSettings_jnvmo"]
-resource_local_to_scene = true
-font = ExtResource("3_drp4b")
-font_size = 48
+[sub_resource type="RichTextEffect" id="RichTextEffect_24shy"]
+resource_name = "heart"
+script = ExtResource("5_ooum8")
+metadata/rt = 64262307412986
 
-[sub_resource type="LabelSettings" id="LabelSettings_eae40"]
-resource_local_to_scene = true
-font = ExtResource("3_drp4b")
-font_size = 48
+[sub_resource type="RichTextEffect" id="RichTextEffect_eq4es"]
+resource_name = "sway"
+script = ExtResource("6_b6dfl")
+metadata/rt = 64262307412986
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_uv3ve"]
+resource_name = "heart"
+script = ExtResource("5_ooum8")
+metadata/rt = 64262793951234
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_pfimx"]
+resource_name = "sway"
+script = ExtResource("6_b6dfl")
+metadata/rt = 64262793951234
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hdb0b"]
+resource_name = "heart"
+script = ExtResource("5_ooum8")
+metadata/rt = 64263246901885
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_w4inc"]
+resource_name = "sway"
+script = ExtResource("6_b6dfl")
+metadata/rt = 64263246901885
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_f1jmp"]
+resource_name = "heart"
+script = ExtResource("5_ooum8")
+metadata/rt = 64263699923629
 
 [sub_resource type="FontFile" id="FontFile_ar1yh"]
 cache/0/32/0/ascent = 0.0
@@ -202,14 +229,15 @@ light_energy = 2.903
 light_size = 0.539
 spot_range = 78.4701
 
-[node name="DiceContainer" parent="." node_paths=PackedStringArray("scoreLabel", "targetLabel", "cashLabel", "cashOutButton", "soundContainer", "currentRollLabel") instance=ExtResource("2_j8wy6")]
+[node name="DiceContainer" parent="." node_paths=PackedStringArray("scoreLabel", "targetLabel", "cashLabel", "cashOutButton", "cashoutButtonRTL", "soundContainer", "currentRollLabel") instance=ExtResource("2_j8wy6")]
 transform = Transform3D(-4.37114e-08, 0, 1.2089, 0, 1, 0, -1, 0, -5.28428e-08, 0, 0, 0)
 scoreLabel = NodePath("../Panel/HBoxContainer/ScoreLabel")
 targetLabel = NodePath("../Panel/HBoxContainer/HBoxContainer2/TargetLabel")
 cashLabel = NodePath("../Panel/HBoxContainer/HBoxContainer2/CashLabel")
-cashOutButton = NodePath("../Panel/HBoxContainer/HBoxContainer2/Button")
+cashOutButton = NodePath("../Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel/Button")
+cashoutButtonRTL = NodePath("../Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel")
 soundContainer = NodePath("../SoundContainer")
-currentRollLabel = NodePath("../Panel/HBoxContainer/CurrentScoreLabel")
+currentRollLabel = NodePath("../Panel/HBoxContainer/CurrentScoreLabel2")
 
 [node name="Barrier" type="StaticBody3D" parent="."]
 transform = Transform3D(0.979449, -0.201693, 0, 0.201693, 0.979449, 0, 0, 0, 1, 4.37161, 0, 0)
@@ -267,48 +295,358 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScoreLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="ScoreLabel" type="RichTextLabel" parent="Panel/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 68)
 layout_mode = 2
 size_flags_vertical = 0
-text = "Score: 0"
-label_settings = SubResource("LabelSettings_2memi")
-horizontal_alignment = 1
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/bold_italics_font_size = 64
+theme_override_font_sizes/italics_font_size = 64
+theme_override_font_sizes/mono_font_size = 64
+theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/bold_font_size = 64
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_uns42"), SubResource("RichTextEffect_080wm")]
+script = ExtResource("7_4g5d0")
+bbcode = "[heart][sway]Score: 0"
+effects = 2
+alignment = 2
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "SquareKids-LZ5y"
+font_auto_setup = true
+font_size = 64
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 1.0
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
 
-[node name="CurrentScoreLabel" type="Label" parent="Panel/HBoxContainer"]
+[node name="CurrentScoreLabel2" type="RichTextLabel" parent="Panel/HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 39)
 layout_mode = 2
-text = "This Roll: "
-label_settings = SubResource("LabelSettings_s1u6i")
-horizontal_alignment = 1
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/bold_italics_font_size = 36
+theme_override_font_sizes/italics_font_size = 36
+theme_override_font_sizes/mono_font_size = 36
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 36
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_24shy"), SubResource("RichTextEffect_eq4es")]
+script = ExtResource("7_4g5d0")
+bbcode = "[heart][sway]This Roll: "
+effects = 2
+alignment = 2
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "SquareKids-LZ5y"
+font_auto_setup = true
+font_size = 36
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 1.0
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
 
 [node name="HBoxContainer2" type="VBoxContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
+
+[node name="TargetLabel" type="RichTextLabel" parent="Panel/HBoxContainer/HBoxContainer2"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 51)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_uv3ve"), SubResource("RichTextEffect_pfimx")]
+script = ExtResource("7_4g5d0")
+bbcode = "[heart][sway]Target: 0"
+effects = 2
+alignment = 2
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "SquareKids-LZ5y"
+font_auto_setup = true
+font_size = 48
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 1.0
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
+
+[node name="CashLabel" type="RichTextLabel" parent="Panel/HBoxContainer/HBoxContainer2"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 51)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_hdb0b"), SubResource("RichTextEffect_w4inc")]
+script = ExtResource("7_4g5d0")
+bbcode = "[heart][sway]Cash: 0"
+effects = 2
+alignment = 2
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "SquareKids-LZ5y"
+font_auto_setup = true
+font_size = 48
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 1.0
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
+
+[node name="CashoutButtonLabel" type="RichTextLabel" parent="Panel/HBoxContainer/HBoxContainer2"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_f1jmp")]
+script = ExtResource("7_4g5d0")
+bbcode = "[heart]Cash Out For:   "
+effects = 2
+alignment = 2
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "SquareKids-LZ5y"
+font_auto_setup = true
+font_size = 32
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 1.0
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel"]
+show_behind_parent = true
+layout_mode = 2
+offset_left = 806.0
+offset_top = -4.0
+offset_right = 937.0
+offset_bottom = 35.0
+scale = Vector2(2.60324, 1)
 size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="TargetLabel" type="Label" parent="Panel/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Target: 0"
-label_settings = SubResource("LabelSettings_jnvmo")
-horizontal_alignment = 2
-
-[node name="CashLabel" type="Label" parent="Panel/HBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Cash: 0"
-label_settings = SubResource("LabelSettings_eae40")
-horizontal_alignment = 2
-
-[node name="Button" type="Button" parent="Panel/HBoxContainer/HBoxContainer2"]
-self_modulate = Color(1, 0.658824, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
 theme = SubResource("Theme_04gu5")
 theme_override_fonts/font = ExtResource("4_430w1")
-text = "Cash Out For:
-0
-"
 
 [node name="SoundContainer" type="Node3D" parent="."]
 
@@ -319,6 +657,6 @@ volume_db = -4.919
 [node name="ZapsplatLeisurePokerChipsScrapeSlideFromTableIntoHand21314" type="AudioStreamPlayer" parent="SoundContainer"]
 stream = ExtResource("4_aetrx")
 
-[connection signal="button_down" from="Panel/HBoxContainer/HBoxContainer2/Button" to="DiceContainer" method="_on_button_button_down"]
-[connection signal="mouse_entered" from="Panel/HBoxContainer/HBoxContainer2/Button" to="DiceContainer" method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Panel/HBoxContainer/HBoxContainer2/Button" to="DiceContainer" method="_on_button_mouse_exited"]
+[connection signal="button_down" from="Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel/Button" to="DiceContainer" method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel/Button" to="DiceContainer" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel/Button" to="DiceContainer" method="_on_button_mouse_exited"]

@@ -1,12 +1,14 @@
 extends Node3D
 
-@export var scoreLabel : Label
+@export var scoreLabel : RicherTextLabel
 
-@export var targetLabel : Label
+@export var targetLabel : RicherTextLabel
 
-@export var cashLabel : Label
+@export var cashLabel : RicherTextLabel
 
 @export var cashOutButton : Button
+
+@export var cashoutButtonRTL : RicherTextLabel
 
 @export var diceResources : ResourcePreloader
 
@@ -16,9 +18,10 @@ extends Node3D
 
 @export var soundContainer : Node3D
 
-@export var currentRollLabel : Label
+@export var currentRollLabel : RicherTextLabel
 
 @export var cashoutSound : AudioStreamPlayer3D
+
 
 var diceArray := []
 
@@ -43,12 +46,18 @@ func _ready():
 	GlobalController.soundContainer = soundContainer
 	
 	GlobalController.currentRollLabel = currentRollLabel
-	
+	#
 	GlobalController.targetLabel = targetLabel
+	
+	GlobalController.cashoutButtonRTL = cashoutButtonRTL
 	
 	GlobalController.currentScoreTarget = 6
 	
-	cashLabel.text = "Cash: " + str(GlobalController.playerCash)
+	cashLabel.bbcode = GlobalController.bbcodePrefix + "Cash: " + str(GlobalController.playerCash)
+	
+	scoreLabel.bbcode = GlobalController.bbcodePrefix + "Score: 0"
+	
+	currentRollLabel.bbcode = GlobalController.bbcodePrefix + "This Roll: 0"
 	
 	populateDice()
 
@@ -157,13 +166,13 @@ func checkForDuplicateNumbersThenScore():
 	
 	for i in scored_dice_array:
 		
-		var tween = get_tree().create_tween()
-		
-		tween.tween_property(scoreLabel,"text", "Score: " + str(int(scoreLabel.text) + i.rolledSide.sideValue), .4)
-		
+		#var tween = get_tree().create_tween()
+		#
+		#tween.tween_property(scoreLabel,"bbcode", "[heart][sway]Score: " + str(int(scoreLabel.text) + i.rolledSide.sideValue), .4)
+		#
 		i.scoreVisualEffect()
 		
-		await tween.finished
+		#await tween.finished
 		
 		await i.done_scoring
 		
@@ -173,13 +182,11 @@ func checkForDuplicateNumbersThenScore():
 	
 	GlobalController.preFinalScore = currentRollScore
 	
-	
-	
-	currentRollLabel.text = "This Roll: " + str(currentRollScore) 
+	currentRollLabel.bbcode = GlobalController.bbcodePrefix + "This Roll: " + str(currentRollScore) 
 	
 	GlobalController.applyRoundEndScoreModifiers()
 	await GlobalController.finished_round_end
-	currentRollLabel.text = "This Roll: " + str(GlobalController.currentRollScore)
+	currentRollLabel.bbcode = GlobalController.bbcodePrefix + "This Roll: " + str(GlobalController.currentRollScore)
 
 func endRound():
 	
@@ -193,8 +200,8 @@ func endRound():
 		i.queue_free()
 
 func _on_button_mouse_entered() -> void:
-
-	canRoll = false
+	if(!GlobalController.isScoring && !isRolling):
+		canRoll = false
 
 func _on_button_mouse_exited() -> void:
 
@@ -213,6 +220,6 @@ func _on_button_button_down() -> void:
 		
 		cashoutSound.play()
 		
-		cashOutButton.text = "Click to Cash Out For: \n" + str(0)
+		#cashOutButton.text = "Cash Out For: \n" + str(0)
 	
 	#endRound()

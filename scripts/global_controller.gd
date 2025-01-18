@@ -1,9 +1,11 @@
 extends Node
 
+var bbcodePrefix = "[woo][heart]"
+
 var totalScore : int :
 	set(value):
 		totalScore = value
-		scoreLabel.text = str("Score: " + str(totalScore))
+		scoreLabel.bbcode = str(bbcodePrefix + "Score: " + str(totalScore))
 		print("Total amount scored this round " + str(value))
 
 var preFinalScore : int
@@ -11,14 +13,16 @@ var preFinalScore : int
 var playerCash : int :
 	set(value):
 		playerCash = value
-		cashLabel.text = "Cash: " + str(playerCash)
+		cashLabel.bbcode = bbcodePrefix + "Cash: " + str(playerCash)
 
 var listOfCurrentRollValues := []
 
 var currentScoreTarget : int = 6:
 	set(value):
 		currentScoreTarget = value
-		targetLabel.text = "Must Roll Over: " + str(currentScoreTarget)
+		targetLabel.bbcode = bbcodePrefix + "Target: " + str(currentScoreTarget)
+
+var cashoutButtonRTL : RicherTextLabel
 
 
 var currentRollScore : int :
@@ -34,20 +38,23 @@ var currentRollScore : int :
 		else:
 			soundContainer.get_children()[0].play()
 			totalScore = 0
-		cashOutButton.text = "Cash Out For: \n" +  str(totalScore / 5)
+			
+		cashoutButtonRTL.bbcode = bbcodePrefix + "Cash Out For: " +  str(totalScore / 5)
+		
 		if(currentRollScore < currentScoreTarget):
 		
-			currentRollLabel.label_settings.font_color = Color.BROWN
+			pass
+			#currentRollLabel.self_modulate = Color.BROWN
 		
 		else:
-			
-			currentRollLabel.label_settings.font_color = Color.WHITE
+			pass
+			#currentRollLabel.self_modulate = Color.WHITE
 
-var scoreLabel : Label
+var scoreLabel : RicherTextLabel
 
-var targetLabel : Label
+var targetLabel : RicherTextLabel
 
-var cashLabel : Label
+var cashLabel : RicherTextLabel
 
 var cashOutButton : Button
 
@@ -59,7 +66,7 @@ var callableArrayArgs := []
 
 var diceContainer : Node3D
 
-var currentRollLabel : Label
+var currentRollLabel : RicherTextLabel
 
 var isScoring : bool
 
