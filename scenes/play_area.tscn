@@ -34,50 +34,50 @@ size = Vector3(13.1743, 0.492676, 10.3111)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5svg5"]
 size = Vector3(1, 8.91614, 12.5461)
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_uns42"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_n7cx4"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 64261854423560
+metadata/rt = 13017878185450
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_080wm"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_oniw8"]
 resource_name = "sway"
 script = ExtResource("6_b6dfl")
-metadata/rt = 64261854423560
+metadata/rt = 13017878185450
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_24shy"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_arr6w"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 64262307412986
+metadata/rt = 13018331148680
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_eq4es"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_acixf"]
 resource_name = "sway"
 script = ExtResource("6_b6dfl")
-metadata/rt = 64262307412986
+metadata/rt = 13018331148680
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_uv3ve"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_8nxcq"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 64262793951234
+metadata/rt = 13018817688125
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_pfimx"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_niits"]
 resource_name = "sway"
 script = ExtResource("6_b6dfl")
-metadata/rt = 64262793951234
+metadata/rt = 13018817688125
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_hdb0b"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_786no"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 64263246901885
+metadata/rt = 13019270673878
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_w4inc"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_7v3m8"]
 resource_name = "sway"
 script = ExtResource("6_b6dfl")
-metadata/rt = 64263246901885
+metadata/rt = 13019270673878
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_f1jmp"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_f436p"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 64263699923629
+metadata/rt = 13019723680786
 
 [sub_resource type="FontFile" id="FontFile_ar1yh"]
 cache/0/32/0/ascent = 0.0
@@ -312,7 +312,7 @@ theme_override_font_sizes/normal_font_size = 64
 theme_override_font_sizes/bold_font_size = 64
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_uns42"), SubResource("RichTextEffect_080wm")]
+custom_effects = [SubResource("RichTextEffect_n7cx4"), SubResource("RichTextEffect_oniw8")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart][sway]Score: 0"
 effects = 2
@@ -379,7 +379,7 @@ theme_override_font_sizes/normal_font_size = 36
 theme_override_font_sizes/bold_font_size = 36
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_24shy"), SubResource("RichTextEffect_eq4es")]
+custom_effects = [SubResource("RichTextEffect_arr6w"), SubResource("RichTextEffect_acixf")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart][sway]This Roll: "
 effects = 2
@@ -449,7 +449,7 @@ theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/bold_font_size = 48
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_uv3ve"), SubResource("RichTextEffect_pfimx")]
+custom_effects = [SubResource("RichTextEffect_8nxcq"), SubResource("RichTextEffect_niits")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart][sway]Target: 0"
 effects = 2
@@ -517,7 +517,7 @@ theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/bold_font_size = 48
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_hdb0b"), SubResource("RichTextEffect_w4inc")]
+custom_effects = [SubResource("RichTextEffect_786no"), SubResource("RichTextEffect_7v3m8")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart][sway]Cash: 0"
 effects = 2
@@ -585,7 +585,7 @@ theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_f1jmp")]
+custom_effects = [SubResource("RichTextEffect_f436p")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart]Cash Out For:   "
 effects = 2

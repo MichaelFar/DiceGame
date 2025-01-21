@@ -22,10 +22,13 @@ extends Node3D
 
 @export var cashoutSound : AudioStreamPlayer3D
 
-
 var diceArray := []
 
 var canRoll = true
+
+var canScore = true
+
+var buttonHovered = false
 
 var hasRolledOnce = false
 
@@ -73,10 +76,16 @@ func _physics_process(delta: float) -> void:
 		
 		hasRolledOnce = true
 		
+		canScore = false
+		
 		canRoll = false
 		
 		rollAllDice()
-
+	
+	if(canScore):
+		pass
+		#canRoll = !buttonHovered
+	
 func populateDice():
 	
 	var spawn_points_children = spawnPoints.get_children()
@@ -135,6 +144,10 @@ func checkForDuplicateNumbersThenScore():
 	
 	GlobalController.isScoring = true
 	
+	GlobalController.preFinalScore = 0
+	
+	GlobalController.applyRoundStartScoreModifiers()
+	
 	for i in diceArray:
 	
 		value_array.append(i.currentRollValue)
@@ -178,9 +191,13 @@ func checkForDuplicateNumbersThenScore():
 		
 	canRoll = true
 	
+	canScore = canRoll
+	
+	isRolling = false
+	
 	currentRollScore = score
 	
-	GlobalController.preFinalScore = currentRollScore
+	GlobalController.preFinalScore += currentRollScore
 	
 	currentRollLabel.bbcode = GlobalController.bbcodePrefix + "This Roll: " + str(currentRollScore) 
 	
@@ -201,18 +218,18 @@ func endRound():
 
 func _on_button_mouse_entered() -> void:
 	if(!GlobalController.isScoring && !isRolling):
-		canRoll = false
+		buttonHovered = true
 
 func _on_button_mouse_exited() -> void:
 
 	if(!GlobalController.isScoring && !isRolling):
 		
-		canRoll = true
+		buttonHovered = false
 	
 
 func _on_button_button_down() -> void:
 	
-	if(!GlobalController.isScoring):
+	if(canScore):
 		
 		GlobalController.playerCash += GlobalController.totalScore / 5
 		

@@ -63,8 +63,8 @@ func _on_sleeping_state_changed() -> void:
 		if(rolledSide.get_script() != null):
 			
 			for i in rolledSide.effectCallableArray:
-				
-				GlobalController.callableArray.append(i)
+				print("Adding side effect to list")
+				i.addSideEffectToList()
 				
 			await GlobalController.finished_round_end
 		

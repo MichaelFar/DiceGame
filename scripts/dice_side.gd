@@ -37,7 +37,7 @@ func instantiateEffectCallables():
 		
 		effect_instance.diceParent = diceParent
 		
-		effectCallableArray.append(effect_instance.effectCallable)
+		effectCallableArray.append(effect_instance)
 
 func upgradeSide():
 	

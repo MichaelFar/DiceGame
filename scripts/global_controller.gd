@@ -24,14 +24,13 @@ var currentScoreTarget : int = 6:
 
 var cashoutButtonRTL : RicherTextLabel
 
-
 var currentRollScore : int :
 	
 	set(value):
 		
 		currentRollScore = value
 		await finished_round_end
-		if(value >= currentScoreTarget):
+		if(currentRollScore >= currentScoreTarget):
 			soundContainer.get_children()[1].play()
 			totalScore += value
 			
@@ -60,7 +59,9 @@ var cashOutButton : Button
 
 var soundContainer : Node3D
 
-var callableArray := []
+var roundStartCallableArray := []
+
+var roundEndCallableArray := []
 
 var callableArrayArgs := []
 
@@ -92,7 +93,7 @@ func applyRoundEndScoreModifiers():
 	
 	var temp_score = 0
 	
-	for i in callableArray:
+	for i in roundEndCallableArray:
 		
 		temp_score += i.call()
 		
@@ -100,11 +101,11 @@ func applyRoundEndScoreModifiers():
 			
 		currentRollScore = temp_score
 	
-	if(callableArray.size() == 0):
+	if(roundEndCallableArray.size() == 0):
 		
 		currentRollScore = preFinalScore
 	
-	callableArray = []
+	roundEndCallableArray = []
 	listOfCurrentRollValues = []
 	isScoring = false
 	finished_round_end.emit()
@@ -113,7 +114,7 @@ func applyRoundStartScoreModifiers():
 	
 	var temp_score = 0
 	
-	for i in callableArray:
+	for i in roundStartCallableArray:
 		
 		temp_score += i.call()
 		
@@ -121,11 +122,11 @@ func applyRoundStartScoreModifiers():
 			
 		currentRollScore = temp_score
 	
-	if(callableArray.size() == 0):
+	if(roundStartCallableArray.size() == 0):
 		
 		currentRollScore = preFinalScore
 	
-	callableArray = []
-	listOfCurrentRollValues = []
-	isScoring = false
+	roundStartCallableArray = []
+	
+	
 	finished_round_start.emit()
