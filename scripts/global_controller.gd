@@ -2,13 +2,15 @@ extends Node
 
 var bbcodePrefix = "[woo][heart]"
 
+var tempScore = 0
+
 var totalScore : int :
 	set(value):
 		totalScore = value
 		scoreLabel.bbcode = str(bbcodePrefix + "Score: " + str(totalScore))
 		print("Total amount scored this round " + str(value))
 
-var preFinalScore : int
+var preFinalScore : int = 0
 
 var playerCash : int :
 	set(value):
@@ -29,7 +31,10 @@ var currentRollScore : int :
 	set(value):
 		
 		currentRollScore = value
+		
+		
 		await finished_round_end
+		
 		if(currentRollScore >= currentScoreTarget):
 			soundContainer.get_children()[1].play()
 			totalScore += value
@@ -91,15 +96,14 @@ func multiplyScore(amountToMult : int):
 
 func applyRoundEndScoreModifiers():
 	
-	var temp_score = 0
 	
 	for i in roundEndCallableArray:
 		
-		temp_score += i.call()
+		tempScore += i.call()
 		
-	if(temp_score > 0):
+	if(tempScore > 0):
 			
-		currentRollScore = temp_score
+		currentRollScore = tempScore
 	
 	if(roundEndCallableArray.size() == 0):
 		
@@ -112,19 +116,16 @@ func applyRoundEndScoreModifiers():
 	
 func applyRoundStartScoreModifiers():
 	
-	var temp_score = 0
+	var tempScore = 0
 	
 	for i in roundStartCallableArray:
 		
-		temp_score += i.call()
+		tempScore += i.call()
 		
-	if(temp_score > 0):
-			
-		currentRollScore = temp_score
 	
-	if(roundStartCallableArray.size() == 0):
-		
-		currentRollScore = preFinalScore
+	#if(roundStartCallableArray.size() == 0):
+		#
+		#currentRollScore = preFinalScore
 	
 	roundStartCallableArray = []
 	

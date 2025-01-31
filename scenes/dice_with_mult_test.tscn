@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/base_dice.gd" id="1_hkkbw"]
 [ext_resource type="AudioStream" uid="uid://btjqwt8sndkxr" path="res://sounds/game_die_place_on_playing_board_2.mp3" id="2_w7vlx"]
-[ext_resource type="PackedScene" uid="uid://biah4qa8t24yh" path="res://scenes/x2MultSide.tscn" id="3_i103t"]
-[ext_resource type="PackedScene" uid="uid://dteal1g0x6mmn" path="res://scenes/baseDiceSide.tscn" id="3_ph7gx"]
+[ext_resource type="PackedScene" uid="uid://biah4qa8t24yh" path="res://scenes/DiceSides/x2MultSide.tscn" id="3_i103t"]
+[ext_resource type="PackedScene" uid="uid://dteal1g0x6mmn" path="res://scenes/DiceSides/baseDiceSide.tscn" id="3_ph7gx"]
 [ext_resource type="AudioStream" uid="uid://qa7evbig4mt3" path="res://sounds/zapsplat_leisure_board_game_dice_set_down_on_playing_board_001_37253.mp3" id="3_uhl6x"]
 [ext_resource type="AudioStream" uid="uid://dpwbmbcis3pmh" path="res://sounds/zapsplat_leisure_board_game_dice_set_down_on_playing_board_002_37254.mp3" id="4_s7swu"]
 [ext_resource type="AudioStream" uid="uid://crvaror8s0rrk" path="res://sounds/zapsplat_leisure_board_game_dice_set_down_on_playing_board_003_37255.mp3" id="5_sy0te"]

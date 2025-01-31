@@ -22,6 +22,8 @@ extends Node3D
 
 @export var cashoutSound : AudioStreamPlayer3D
 
+@export var rollButton : Button
+
 var diceArray := []
 
 var canRoll = true
@@ -69,22 +71,6 @@ func _physics_process(delta: float) -> void:
 	if(Input.is_action_just_released("debug")):
 		
 		endRound()
-		
-	if(Input.is_action_just_pressed("roll_dice") && canRoll):
-		
-		print("Rolling dice")
-		
-		hasRolledOnce = true
-		
-		canScore = false
-		
-		canRoll = false
-		
-		rollAllDice()
-	
-	if(canScore):
-		pass
-		#canRoll = !buttonHovered
 	
 func populateDice():
 	
@@ -184,7 +170,7 @@ func checkForDuplicateNumbersThenScore():
 		#tween.tween_property(scoreLabel,"bbcode", "[heart][sway]Score: " + str(int(scoreLabel.text) + i.rolledSide.sideValue), .4)
 		#
 		i.scoreVisualEffect()
-		
+		print("Visual effect scoring")
 		#await tween.finished
 		
 		await i.done_scoring
@@ -202,7 +188,9 @@ func checkForDuplicateNumbersThenScore():
 	currentRollLabel.bbcode = GlobalController.bbcodePrefix + "This Roll: " + str(currentRollScore) 
 	
 	GlobalController.applyRoundEndScoreModifiers()
+	
 	await GlobalController.finished_round_end
+	
 	currentRollLabel.bbcode = GlobalController.bbcodePrefix + "This Roll: " + str(GlobalController.currentRollScore)
 
 func endRound():
@@ -214,10 +202,13 @@ func endRound():
 	await tween.finished
 	
 	for i in diceParent.get_children():
+		
 		i.queue_free()
 
 func _on_button_mouse_entered() -> void:
+	
 	if(!GlobalController.isScoring && !isRolling):
+	
 		buttonHovered = true
 
 func _on_button_mouse_exited() -> void:
@@ -226,7 +217,6 @@ func _on_button_mouse_exited() -> void:
 		
 		buttonHovered = false
 	
-
 func _on_button_button_down() -> void:
 	
 	if(canScore):
@@ -237,6 +227,16 @@ func _on_button_button_down() -> void:
 		
 		cashoutSound.play()
 		
-		#cashOutButton.text = "Cash Out For: \n" + str(0)
+func _on_button_button_up() -> void:
 	
-	#endRound()
+	if(canRoll):
+		
+		print("Rolling dice")
+		
+		hasRolledOnce = true
+		
+		canScore = false
+		
+		canRoll = false
+		
+		rollAllDice()

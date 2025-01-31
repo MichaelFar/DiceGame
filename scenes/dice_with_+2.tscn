@@ -1,14 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://guhl72g77qn8"]
+[gd_scene load_steps=14 format=3 uid="uid://dqnm7gingpsyo"]
 
-[ext_resource type="Script" path="res://scripts/base_dice.gd" id="1_7x5lh"]
-[ext_resource type="AudioStream" uid="uid://btjqwt8sndkxr" path="res://sounds/game_die_place_on_playing_board_2.mp3" id="2_u7efv"]
-[ext_resource type="PackedScene" uid="uid://dteal1g0x6mmn" path="res://scenes/DiceSides/baseDiceSide.tscn" id="3_1sinn"]
-[ext_resource type="AudioStream" uid="uid://qa7evbig4mt3" path="res://sounds/zapsplat_leisure_board_game_dice_set_down_on_playing_board_001_37253.mp3" id="3_s3fxd"]
-[ext_resource type="AudioStream" uid="uid://dpwbmbcis3pmh" path="res://sounds/zapsplat_leisure_board_game_dice_set_down_on_playing_board_002_37254.mp3" id="4_hcwiq"]
-[ext_resource type="AudioStream" uid="uid://crvaror8s0rrk" path="res://sounds/zapsplat_leisure_board_game_dice_set_down_on_playing_board_003_37255.mp3" id="5_6lenu"]
-[ext_resource type="AudioStream" uid="uid://barriqut65vwn" path="res://sounds/zapsplat_multimedia_button_click_bright_001_92098.mp3" id="7_gad76"]
-[ext_resource type="AudioStream" uid="uid://bdlkrpx1s8ghf" path="res://sounds/zapsplat_multimedia_button_click_bright_002_92099.mp3" id="8_0ukub"]
-[ext_resource type="AudioStream" uid="uid://ciwd0bywfg0cn" path="res://sounds/zapsplat_multimedia_button_click_bright_003_92100.mp3" id="9_ckr3o"]
+[ext_resource type="Script" path="res://scripts/base_dice.gd" id="1_v47y6"]
+[ext_resource type="AudioStream" uid="uid://btjqwt8sndkxr" path="res://sounds/game_die_place_on_playing_board_2.mp3" id="2_oqmvo"]
+[ext_resource type="PackedScene" uid="uid://dteal1g0x6mmn" path="res://scenes/DiceSides/baseDiceSide.tscn" id="3_ppdfm"]
+[ext_resource type="AudioStream" uid="uid://qa7evbig4mt3" path="res://sounds/zapsplat_leisure_board_game_dice_set_down_on_playing_board_001_37253.mp3" id="4_5nouk"]
+[ext_resource type="PackedScene" uid="uid://b60b76nr2tvgn" path="res://scenes/DiceSides/testPreRoundSide.tscn" id="4_s2lpu"]
+[ext_resource type="AudioStream" uid="uid://dpwbmbcis3pmh" path="res://sounds/zapsplat_leisure_board_game_dice_set_down_on_playing_board_002_37254.mp3" id="5_8c56w"]
+[ext_resource type="AudioStream" uid="uid://crvaror8s0rrk" path="res://sounds/zapsplat_leisure_board_game_dice_set_down_on_playing_board_003_37255.mp3" id="6_6qkjp"]
+[ext_resource type="AudioStream" uid="uid://barriqut65vwn" path="res://sounds/zapsplat_multimedia_button_click_bright_001_92098.mp3" id="7_8nb5v"]
+[ext_resource type="AudioStream" uid="uid://bdlkrpx1s8ghf" path="res://sounds/zapsplat_multimedia_button_click_bright_002_92099.mp3" id="8_bf8yf"]
+[ext_resource type="AudioStream" uid="uid://ciwd0bywfg0cn" path="res://sounds/zapsplat_multimedia_button_click_bright_003_92100.mp3" id="9_icux0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1ecb"]
 
@@ -18,7 +19,7 @@ material = SubResource("StandardMaterial3D_w1ecb")
 [sub_resource type="BoxShape3D" id="BoxShape3D_uvwgb"]
 
 [node name="Dice" type="RigidBody3D" node_paths=PackedStringArray("sideContainer", "audioPlayer", "scoreSoundContainer", "preScoreSoundContainer")]
-script = ExtResource("1_7x5lh")
+script = ExtResource("1_v47y6")
 sideContainer = NodePath("SideContainer")
 audioPlayer = NodePath("Foley2DiceThrowOnGameBoard")
 scoreSoundContainer = NodePath("ScoreSoundContainer")
@@ -31,38 +32,36 @@ mesh = SubResource("BoxMesh_6bodm")
 shape = SubResource("BoxShape3D_uvwgb")
 
 [node name="Foley2DiceThrowOnGameBoard" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_u7efv")
+stream = ExtResource("2_oqmvo")
 bus = &"LowToneImpact"
 
 [node name="SideContainer" type="Node3D" parent="."]
 
-[node name="DiceSide6" parent="SideContainer" instance=ExtResource("3_1sinn")]
+[node name="DiceSide6" parent="SideContainer" instance=ExtResource("3_ppdfm")]
 
-[node name="DiceSide1" parent="SideContainer" instance=ExtResource("3_1sinn")]
+[node name="DiceSide1" parent="SideContainer" instance=ExtResource("3_ppdfm")]
 transform = Transform3D(-1.74845e-07, 0, -1, 0, 4.1, 0, 4, 0, -4.37114e-08, -0.504408, 0, 0)
 text = "1"
 sideValue = 1
 
-[node name="DiceSide4" parent="SideContainer" instance=ExtResource("3_1sinn")]
-transform = Transform3D(7.64276e-15, -4.1, -4.37114e-08, -1.74846e-07, -1.79217e-07, 1, -4, 0, -4.37114e-08, -0.00170394, 0.502704, 0)
-text = "4"
-sideValue = 4
-
-[node name="DiceSide3" parent="SideContainer" instance=ExtResource("3_1sinn")]
+[node name="DiceSide3" parent="SideContainer" instance=ExtResource("3_ppdfm")]
 transform = Transform3D(7.64272e-15, -4.1, 4.37114e-08, -1.74845e-07, -1.79217e-07, -1, 4, 0, -4.37114e-08, -0.0017039, -0.502704, 0)
 text = "3
 "
 sideValue = 3
 
-[node name="DiceSide2" parent="SideContainer" instance=ExtResource("3_1sinn")]
+[node name="DiceSide2" parent="SideContainer" instance=ExtResource("3_ppdfm")]
 transform = Transform3D(4, 0, 1.06581e-14, 0, 4.1, 0, -4.40536e-13, 0, 1, 0, 0, 0.51)
 text = "2"
 sideValue = 2
 
-[node name="DiceSide5" parent="SideContainer" instance=ExtResource("3_1sinn")]
+[node name="DiceSide5" parent="SideContainer" instance=ExtResource("3_ppdfm")]
 transform = Transform3D(-4, 0, -8.74227e-08, 0, 4.1, 0, 3.49691e-07, 0, -1, 0, 0, -0.51)
 text = "5"
 sideValue = 5
+
+[node name="Label3D" parent="SideContainer" instance=ExtResource("4_s2lpu")]
+transform = Transform3D(7.64276e-15, -4.1, -4.37114e-08, -1.74846e-07, -1.79217e-07, 1, -4, 0, -4.37114e-08, 0, 0.51, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -72,24 +71,24 @@ shape = SubResource("BoxShape3D_uvwgb")
 [node name="ScoreSoundContainer" type="Node3D" parent="."]
 
 [node name="ZapsplatLeisureBoardGameDiceSetDownOnPlayingBoard00137253" type="AudioStreamPlayer3D" parent="ScoreSoundContainer"]
-stream = ExtResource("3_s3fxd")
+stream = ExtResource("4_5nouk")
 
 [node name="ZapsplatLeisureBoardGameDiceSetDownOnPlayingBoard00237254" type="AudioStreamPlayer3D" parent="ScoreSoundContainer"]
-stream = ExtResource("4_hcwiq")
+stream = ExtResource("5_8c56w")
 
 [node name="ZapsplatLeisureBoardGameDiceSetDownOnPlayingBoard00337255" type="AudioStreamPlayer3D" parent="ScoreSoundContainer"]
-stream = ExtResource("5_6lenu")
+stream = ExtResource("6_6qkjp")
 
 [node name="preScoreSoundContainer" type="Node3D" parent="."]
 
 [node name="ZapsplatMultimediaButtonClickBright00192098" type="AudioStreamPlayer3D" parent="preScoreSoundContainer"]
-stream = ExtResource("7_gad76")
+stream = ExtResource("7_8nb5v")
 
 [node name="ZapsplatMultimediaButtonClickBright00292099" type="AudioStreamPlayer3D" parent="preScoreSoundContainer"]
-stream = ExtResource("8_0ukub")
+stream = ExtResource("8_bf8yf")
 
 [node name="ZapsplatMultimediaButtonClickBright00392100" type="AudioStreamPlayer3D" parent="preScoreSoundContainer"]
-stream = ExtResource("9_ckr3o")
+stream = ExtResource("9_icux0")
 
 [connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

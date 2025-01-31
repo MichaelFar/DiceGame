@@ -8,6 +8,7 @@ func createSideEffect():
 	effectCallable = Callable(
 		func():
 			diceParent.scoreVisualEffect()
+			print("Scoring within a SideEffect")
 			print("Multing with: " + str(GlobalController.preFinalScore))
 			return GlobalController.preFinalScore * multAmount
 	)

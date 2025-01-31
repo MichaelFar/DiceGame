@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b60b76nr2tvgn"]
+
+[ext_resource type="Script" path="res://scripts/dice_side.gd" id="1_wjo8w"]
+[ext_resource type="Script" path="res://scripts/SideEffects/test_preround_side.gd" id="2_jjj86"]
+
+[node name="Label3D" type="Label3D" node_paths=PackedStringArray("effectResources")]
+transform = Transform3D(-1.74846e-07, 0, 1, 0, 4.1, 0, -4, 0, -4.37114e-08, 0.501, 0, 0)
+texture_filter = 0
+text = "+4"
+script = ExtResource("1_wjo8w")
+effectResources = NodePath("EffectResources")
+sideValue = -1
+
+[node name="EffectResources" type="ResourcePreloader" parent="."]
+resources = [PackedStringArray("test_preround_side"), [ExtResource("2_jjj86")]]

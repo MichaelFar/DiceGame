@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctbowrlthk08g"]
 
 [ext_resource type="Script" path="res://scripts/dice_container.gd" id="1_i35gd"]
-[ext_resource type="PackedScene" uid="uid://guhl72g77qn8" path="res://scenes/base_dice.tscn" id="2_taijp"]
+[ext_resource type="PackedScene" uid="uid://dqnm7gingpsyo" path="res://scenes/dice_with_+2.tscn" id="2_lqa53"]
 [ext_resource type="PackedScene" uid="uid://dc8v8drw6x0iq" path="res://scenes/dice_with_mult_test.tscn" id="3_gp704"]
 [ext_resource type="AudioStream" uid="uid://dieo27eniggyi" path="res://sounds/Blastwave_FX_SlotMachineInsert_SFXB.3999.mp3" id="4_2n3og"]
 
@@ -13,7 +13,7 @@ spawnPoints = NodePath("SpawnPoints")
 cashoutSound = NodePath("BlastwaveFxSlotMachineInsertSfxb_3999")
 
 [node name="DiceResources" type="ResourcePreloader" parent="."]
-resources = [PackedStringArray("base_dice 3", "dice_with_mult_test", "dice_with_mult_test 2", "dice_with_mult_test 3"), [ExtResource("2_taijp"), ExtResource("3_gp704"), ExtResource("3_gp704"), ExtResource("3_gp704")]]
+resources = [PackedStringArray("dice_with_+2", "dice_with_+2 2", "dice_with_+2 3", "dice_with_+2 4", "dice_with_mult_test"), [ExtResource("2_lqa53"), ExtResource("2_lqa53"), ExtResource("2_lqa53"), ExtResource("2_lqa53"), ExtResource("3_gp704")]]
 
 [node name="DiceParent" type="Node3D" parent="."]
 

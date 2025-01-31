@@ -52,7 +52,7 @@ func rollDice():
 
 func _on_sleeping_state_changed() -> void:
 	
-	if(is_sleeping() && linear_velocity != Vector3.ZERO):
+	if(is_sleeping() && linear_velocity != Vector3.ZERO && hasRolledOnce):
 		
 		done_rolling.emit()
 		
@@ -63,7 +63,7 @@ func _on_sleeping_state_changed() -> void:
 		if(rolledSide.get_script() != null):
 			
 			for i in rolledSide.effectCallableArray:
-				print("Adding side effect to list")
+				print("Adding side effect to list " + str(i))
 				i.addSideEffectToList()
 				
 			await GlobalController.finished_round_end
@@ -100,7 +100,6 @@ func scoreVisualEffect():
 		
 		tween_2.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z.normalized(), -2 * PI/4), .2)
 		
-	
 	tween.finished.connect(tween_reverse)
 	
 	tween.set_trans(Tween.TRANS_SPRING)
@@ -108,7 +107,6 @@ func scoreVisualEffect():
 	playRandomPreScoreSound()
 	
 	tween.tween_property(scored_label,"basis",scored_label.basis.rotated(scored_label.basis.z.normalized(), PI/4), .2)
-	
 	
 func playRandomScoreSound():
 	

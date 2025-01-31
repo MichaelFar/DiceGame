@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://yk72ewyxuvl7"]
+[gd_scene load_steps=33 format=3 uid="uid://yk72ewyxuvl7"]
 
 [ext_resource type="Material" path="res://textures/WoodFloorMaterial.tres" id="1_rjdib"]
 [ext_resource type="PackedScene" uid="uid://ctbowrlthk08g" path="res://scenes/dice_container.tscn" id="2_j8wy6"]
@@ -34,50 +34,50 @@ size = Vector3(13.1743, 0.492676, 10.3111)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5svg5"]
 size = Vector3(1, 8.91614, 12.5461)
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_n7cx4"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_5lknq"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 13017878185450
+metadata/rt = 1765382615572
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_oniw8"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_p148u"]
 resource_name = "sway"
 script = ExtResource("6_b6dfl")
-metadata/rt = 13017878185450
+metadata/rt = 1765382615572
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_arr6w"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_4aiyt"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 13018331148680
+metadata/rt = 1765969818138
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_acixf"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_6ll8g"]
 resource_name = "sway"
 script = ExtResource("6_b6dfl")
-metadata/rt = 13018331148680
+metadata/rt = 1765969818138
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_8nxcq"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_oerls"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 13018817688125
+metadata/rt = 1766456357414
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_niits"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_xhvre"]
 resource_name = "sway"
 script = ExtResource("6_b6dfl")
-metadata/rt = 13018817688125
+metadata/rt = 1766456357414
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_786no"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_ieydm"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 13019270673878
+metadata/rt = 1766909342255
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_7v3m8"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_nyktk"]
 resource_name = "sway"
 script = ExtResource("6_b6dfl")
-metadata/rt = 13019270673878
+metadata/rt = 1766909342255
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_f436p"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_5k15y"]
 resource_name = "heart"
 script = ExtResource("5_ooum8")
-metadata/rt = 13019723680786
+metadata/rt = 1767362327096
 
 [sub_resource type="FontFile" id="FontFile_ar1yh"]
 cache/0/32/0/ascent = 0.0
@@ -202,6 +202,11 @@ Button/styles/hover = SubResource("StyleBoxFlat_q8yxa")
 Button/styles/normal = SubResource("StyleBoxFlat_4kqj4")
 Button/styles/pressed = SubResource("StyleBoxFlat_3scfo")
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_lkyy1"]
+resource_name = "heart"
+script = ExtResource("5_ooum8")
+metadata/rt = 1767865643591
+
 [node name="PlayArea" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -229,7 +234,7 @@ light_energy = 2.903
 light_size = 0.539
 spot_range = 78.4701
 
-[node name="DiceContainer" parent="." node_paths=PackedStringArray("scoreLabel", "targetLabel", "cashLabel", "cashOutButton", "cashoutButtonRTL", "soundContainer", "currentRollLabel") instance=ExtResource("2_j8wy6")]
+[node name="DiceContainer" parent="." node_paths=PackedStringArray("scoreLabel", "targetLabel", "cashLabel", "cashOutButton", "cashoutButtonRTL", "soundContainer", "currentRollLabel", "rollButton") instance=ExtResource("2_j8wy6")]
 transform = Transform3D(-4.37114e-08, 0, 1.2089, 0, 1, 0, -1, 0, -5.28428e-08, 0, 0, 0)
 scoreLabel = NodePath("../Panel/HBoxContainer/ScoreLabel")
 targetLabel = NodePath("../Panel/HBoxContainer/HBoxContainer2/TargetLabel")
@@ -238,6 +243,7 @@ cashOutButton = NodePath("../Panel/HBoxContainer/HBoxContainer2/CashoutButtonLab
 cashoutButtonRTL = NodePath("../Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel")
 soundContainer = NodePath("../SoundContainer")
 currentRollLabel = NodePath("../Panel/HBoxContainer/CurrentScoreLabel2")
+rollButton = NodePath("../Panel/HBoxContainer/HBoxContainer2/RollLabel/Button")
 
 [node name="Barrier" type="StaticBody3D" parent="."]
 transform = Transform3D(0.979449, -0.201693, 0, 0.201693, 0.979449, 0, 0, 0, 1, 4.37161, 0, 0)
@@ -312,7 +318,7 @@ theme_override_font_sizes/normal_font_size = 64
 theme_override_font_sizes/bold_font_size = 64
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_n7cx4"), SubResource("RichTextEffect_oniw8")]
+custom_effects = [SubResource("RichTextEffect_5lknq"), SubResource("RichTextEffect_p148u")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart][sway]Score: 0"
 effects = 2
@@ -379,7 +385,7 @@ theme_override_font_sizes/normal_font_size = 36
 theme_override_font_sizes/bold_font_size = 36
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_arr6w"), SubResource("RichTextEffect_acixf")]
+custom_effects = [SubResource("RichTextEffect_4aiyt"), SubResource("RichTextEffect_6ll8g")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart][sway]This Roll: "
 effects = 2
@@ -449,7 +455,7 @@ theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/bold_font_size = 48
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_8nxcq"), SubResource("RichTextEffect_niits")]
+custom_effects = [SubResource("RichTextEffect_oerls"), SubResource("RichTextEffect_xhvre")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart][sway]Target: 0"
 effects = 2
@@ -517,7 +523,7 @@ theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/bold_font_size = 48
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_786no"), SubResource("RichTextEffect_7v3m8")]
+custom_effects = [SubResource("RichTextEffect_ieydm"), SubResource("RichTextEffect_nyktk")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart][sway]Cash: 0"
 effects = 2
@@ -585,7 +591,7 @@ theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 32
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_f436p")]
+custom_effects = [SubResource("RichTextEffect_5k15y")]
 script = ExtResource("7_4g5d0")
 bbcode = "[heart]Cash Out For:   "
 effects = 2
@@ -648,6 +654,86 @@ size_flags_horizontal = 8
 theme = SubResource("Theme_04gu5")
 theme_override_fonts/font = ExtResource("4_430w1")
 
+[node name="RollLabel" type="RichTextLabel" parent="Panel/HBoxContainer/HBoxContainer2"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_lkyy1")]
+script = ExtResource("7_4g5d0")
+bbcode = "[heart]Roll"
+effects = 2
+alignment = 2
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = "SquareKids-LZ5y"
+font_auto_setup = true
+font_size = 32
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = true
+shadow_offset = 0.08
+shadow_alpha = 1.0
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer/HBoxContainer2/RollLabel"]
+show_behind_parent = true
+layout_mode = 2
+offset_left = 1045.0
+offset_top = -4.0
+offset_right = 1084.0
+offset_bottom = 35.0
+scale = Vector2(2.60324, 1)
+size_flags_horizontal = 8
+theme = SubResource("Theme_04gu5")
+theme_override_fonts/font = ExtResource("4_430w1")
+
 [node name="SoundContainer" type="Node3D" parent="."]
 
 [node name="ZapsplatMultimediaGameSound8BitBlipSubtleErrorIncorrect112049" type="AudioStreamPlayer" parent="SoundContainer"]
@@ -660,3 +746,4 @@ stream = ExtResource("4_aetrx")
 [connection signal="button_down" from="Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel/Button" to="DiceContainer" method="_on_button_button_down"]
 [connection signal="mouse_entered" from="Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel/Button" to="DiceContainer" method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Panel/HBoxContainer/HBoxContainer2/CashoutButtonLabel/Button" to="DiceContainer" method="_on_button_mouse_exited"]
+[connection signal="button_up" from="Panel/HBoxContainer/HBoxContainer2/RollLabel/Button" to="DiceContainer" method="_on_button_button_up"]

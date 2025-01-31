@@ -7,6 +7,7 @@ var diceParent : RigidBody3D
 var effectCallable : Callable
 
 func _init() -> void:
+	
 	createSideEffect()
 
 func createSideEffect():
